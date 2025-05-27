@@ -13,6 +13,25 @@ on:
 # Jobs are what actually do the work. We can add as many jobs as we want.
 # These will be run in parallel.
 jobs:
+  build:
+    # The name of the job is optional, but it is a good practice to
+    # provide one. It will be displayed in the GitHub UI.
+    name: Build and test
+
+    # Each job can run on a different runner. In this case, we are using
+    # the `ubuntu-latest` runner.
+    runs-on: ubuntu-latest
+
+    # Each job can have multiple steps. These will be run in sequence.
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
   hello_world_job:
     # As with workflow names (and even step names), job names are not
     # strictly required, but they are good practice.
