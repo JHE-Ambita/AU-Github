@@ -16,7 +16,7 @@ jobs:
   build:
     # The name of the job is optional, but it is a good practice to
     # provide one. It will be displayed in the GitHub UI.
-    name: Build and test
+    name: Build
 
     # Each job can run on a different runner. In this case, we are using
     # the `ubuntu-latest` runner.
@@ -32,6 +32,22 @@ jobs:
 
       - name: Build
         run: npm run build
+
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run unit tests
+        run: npm run test
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run linter
+        run: npm run lint:check
+
   hello_world_job:
     # As with workflow names (and even step names), job names are not
     # strictly required, but they are good practice.
